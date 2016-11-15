@@ -1,0 +1,10 @@
+﻿@using VSTSInfoscreen.Models
+@model IEnumerable<PullRequestViewModel>
+@if (!this.Model.Any())
+{
+    <h2>No pull requests found</h2>
+}
+@foreach (var model in this.Model.OrderByDescending(x => !(x.BuildSucceeded.HasValue && x.BuildSucceeded.Value)).ThenByDescending(x => x.Created))
+{
+    this.Html.RenderPartial("_PullRequestRow", model);
+}

@@ -1,0 +1,6 @@
+﻿@using VSTSInfoscreen.Models
+@model IEnumerable<AdditionalInformationViewModel>
+@foreach (var information in Model)
+{
+    Html.RenderPartial("_AdditionalInformation", information);
+}

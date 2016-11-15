@@ -1,0 +1,57 @@
+﻿@using VSTSInfoscreen
+@{
+    ViewBag.Title = "VSTS Infoscreen";
+}
+@section scripts {
+    @Scripts.Render("~/bundles/vstsInfoScreen")
+}
+<script type="text/javascript">
+    window.VSTSInfoScreen = window.VSTSInfoScreen || {};
+    window.VSTSInfoScreen.UI = window.VSTSInfoScreen.UI || {};
+    window.VSTSInfoScreen.UI.updateAdditionalInformation = @InfoscreenConfiguration.Instance.UpdateAdditionalInformation;
+    window.VSTSInfoScreen.UI.updateBuild = @InfoscreenConfiguration.Instance.UpdateBuilds;
+    window.VSTSInfoScreen.UI.updatePullRequest = @InfoscreenConfiguration.Instance.UpdatePullRequests;
+    window.VSTSInfoScreen.UI.updateRelease = @InfoscreenConfiguration.Instance.UpdateReleases;
+    window.VSTSInfoScreen.UI.switchCards = @InfoscreenConfiguration.Instance.SwitchCards.ToString().ToLowerInvariant();
+    window.VSTSInfoScreen.UI.switchInterval = @InfoscreenConfiguration.Instance.SwitchInterval;
+</script>
+<div id="loading" class="card">
+    <div class="card-content">
+        <p id="loadingContent">Loading content...</p>
+        <p id="errorMessage"></p>
+        <div class="progress loader" id="loadingContentLoader">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
+</div>
+<div id="main-content">
+    <div class="row topHeader">
+        <div id="additionalInformation">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s4 vstsHeader">
+            <h1>Builds</h1>
+        </div>
+        <div class="col s4 vstsHeader">
+            <h1>Open Pull Requests</h1>
+        </div>
+        <div class="col s4 vstsHeader">
+            <h1>Release</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s4">
+            <div id="builds">
+            </div>
+        </div>
+        <div class="col s4">
+            <div id="pullrequests">
+            </div>
+        </div>
+        <div class="col s4">
+            <div id="release">
+            </div>
+        </div>
+    </div>
+</div>

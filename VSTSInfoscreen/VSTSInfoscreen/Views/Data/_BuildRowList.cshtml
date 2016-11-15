@@ -1,0 +1,11 @@
+﻿@using VSTSInfoscreen.Models
+@using Microsoft.TeamFoundation.Build.WebApi
+@model IEnumerable<BuildViewModel>
+@if (!this.Model.Any())
+{
+    <h2>No builds found</h2>
+}
+@foreach (var build in this.Model.OrderByDescending(x => x.BuildStatus == BuildStatus.InProgress).ThenBy(x => x.BuildSucceeded).ThenBy(x => x.QueueCount))
+{
+    Html.RenderPartial("_BuildRow", build);
+}

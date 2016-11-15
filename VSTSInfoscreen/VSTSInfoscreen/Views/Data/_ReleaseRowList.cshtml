@@ -1,0 +1,9 @@
+﻿@model IEnumerable<VSTSInfoscreen.Models.ReleaseViewModel>
+@if (!this.Model.Any())
+{
+    <h2>No releases found</h2>
+}
+@foreach (var model in this.Model.OrderBy(x => x.IsInProgress).ThenByDescending(x => !x.Succeeded).ThenByDescending(x => x.Created))
+{
+    this.Html.RenderPartial("_ReleaseRow", model);
+}

@@ -1,0 +1,53 @@
+﻿@using VSTSInfoscreen.Models
+@using Microsoft.TeamFoundation.Build.WebApi
+@model BuildViewModel
+@{
+    var config = InfoscreenConfiguration.Instance;
+    var picColSize = $"s{(config.CompactMode ? 2 : 4)}";
+    var contentColSize = $"s{(config.CompactMode ? 10 : 8)}";
+}
+<div class="card infoCard" id="@string.Concat("build", Model.BuildId)">
+    <div class="card-stacked">
+        <div class="card-content row infoCardTop">
+            <div class="col @picColSize">
+                <img src="@Model.RequestedByProfilePicture" class="user-image" />
+            </div>
+            <div class="col @contentColSize infoCardContent">
+                @if (Model.BuildStatus == BuildStatus.Completed)
+                {
+                    <p><strong>Finished: </strong>@Model.Finished.GetReadableDate()</p>
+                }
+                <p><strong>Branch: </strong>@(Model.SourceBranch.Contains("refs/heads/") ? Model.SourceBranch.Substring(Model.SourceBranch.IndexOf("refs/heads/") + 11) : Model.SourceBranch)</p>
+                @if (!config.CompactMode)
+                {
+                    <p><strong>Workers: </strong>@Model.WorkerNames</p>
+                    <strong>Commit Message: </strong>
+                    <p>@Model.SourceVersionCommit</p>
+                }
+                @if (Model.QueueCount > 0)
+                {
+                    <strong>Queue-Information: </strong>
+                    <p>In Queue (@Model.QueueCount)</p>
+                    <p>Queued @Model.Queued.GetReadableDate()</p>
+                }
+
+                @if (Model.BuildStatus == BuildStatus.InProgress)
+                {
+                    <strong>Started: </strong>
+                    <p>@Model.Started.GetReadableDate() by @Model.RequestedBy</p>
+                }
+
+                <i class="material-icons successIndicator">@Model.GetIcon()</i>
+            </div>
+        </div>
+        <div class="card-action">
+            <span class="card-title"><strong>@Model.BuildId</strong>: @Model.BuildDefinition</span>
+        </div>
+    </div>
+    @if (Model.BuildStatus == BuildStatus.InProgress)
+    {
+        <div class="progress loader">
+            <div class="indeterminate"></div>
+        </div>
+    }
+</div>
