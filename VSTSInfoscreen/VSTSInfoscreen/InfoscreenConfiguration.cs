@@ -214,7 +214,12 @@
             /// <summary>
             /// Gets or sets a value indicating whether to show the completed pull requests in the last 7 days.
             /// </summary>
-            public bool CompletedPullRequestsLast7Days { get; set; } = bool.Parse(ConfigurationManager.AppSettings["CompletedPullRequestsLast7Days"]); 
+            public bool CompletedPullRequestsLast7Days { get; set; } = bool.Parse(ConfigurationManager.AppSettings["CompletedPullRequestsLast7Days"]);
+
+            /// <summary>
+            /// Gets or sets all work item queries to get.
+            /// </summary>
+            public string WorkItemQueriesIds { get; set; } = ConfigurationManager.AppSettings["WorkItemQueriesIds"];
         }
     }
 }

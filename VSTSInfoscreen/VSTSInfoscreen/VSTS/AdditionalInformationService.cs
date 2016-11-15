@@ -226,6 +226,33 @@
                     count.ToString()));
             }
 
+            if (!string.IsNullOrEmpty(this.Configuration.AdditionalInformation.WorkItemQueriesIds))
+            {
+                var queries = this.WitClient.GetQueriesAsync(this.Configuration.TeamProject, depth: 2).Result;
+                var allQueries = queries.SelectMany(x => x.Descendants(y => y.Children));
+                foreach (var queryId in this.Configuration.AdditionalInformation.WorkItemQueriesIds.Split(';'))
+                {
+                    var query = allQueries.Single(x => x.Path == queryId);
+                    var queryResults = this.WitClient.QueryByIdAsync(
+                            this.Configuration.TeamProject,
+                            query.Id)
+                        .Result;
+                    var count = "Error";
+                    if (queryResults.WorkItems != null)
+                    {
+                        count = queryResults.WorkItems.Count().ToString();
+                    }
+                    else if (queryResults.WorkItemRelations != null)
+                    {
+                        count = queryResults.WorkItemRelations.Count().ToString();
+                    }
+
+                    additionalInformation.Add(new AdditionalInformationViewModel(
+                        query.Name,
+                        count));
+                }
+            }
+
             return additionalInformation;
         }
 
