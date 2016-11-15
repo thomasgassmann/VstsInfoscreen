@@ -9,10 +9,12 @@ The configuration of the VstsInfoscreen is made in the Web.config file. The foll
 
 ### GetBuildsTimeFrameForSucceededBuilds
 - This option is used to select the timeframe in which builds are requested from VSTS. This option is of the .NET type "TimeSpan" and can be adjusted in the following format: 
+
 >d.hh:mm:ss
 
 ### GetReleasesTimeFrameForSucceededReleases
 - This option is used to select the timeframe in which releases are requested from VSTS. This option is of the .NET type "TimeSpan" and can be adjusted in the following format: 
+
 >d.hh:mm:ss
 
 ### AccessToken
@@ -21,10 +23,12 @@ https://www.visualstudio.com/en-us/docs/setup-admin/team-services/use-personal-a
 
 ### Uri
 - This is the default uri of the VstsInfoscreen. It should be in the following format:
+
 > https://{yourtenant}.visualstudio.com
 
 ### BaseUri
 - This is the VSTS uri including the Collection:
+
 > https://{yourtenant}.visualstudio.com/{DefaultCollection}
 
 ### TeamProject
@@ -32,6 +36,7 @@ https://www.visualstudio.com/en-us/docs/setup-admin/team-services/use-personal-a
 
 ### ApiBaseUri
 - The API base uri should be in the following format:
+
 > https://{yourtenant}.vsrm.visualstudio.com/{DefaultCollection}/{teamProject}
 
 ### CurrentIteration
@@ -68,22 +73,27 @@ https://www.visualstudio.com/en-us/docs/setup-admin/team-services/use-personal-a
 
 ### UpdateIterationsHour
 - A value indicating when to update the iterations from VSTS. The value is an integer value indicating the hours it takes to wait until to reload the iterations. The following is the default value:
+
 >12
 
 ### UpdateAdditionalInformation
 - This property sets the interval to reload the additional information from the VstsInfoscreen. The value is formatted in milliseconds. The following is the default value:
+
 >60000
 
 ### UpdateBuilds
 - This property sets the interval to reload the builds from the VstsInfoscreen. The value is formatted in milliseconds. The following is the default value:
+
 >10000
 
 ### UpdatePullRequests
 - This property sets the interval to reload the pull requests from the VstsInfoscreen. The value is formatted in milliseconds. The following is the default value:
+
 >10000
 
 ### UpdateReleases
 - This property sets the interval to reload the releases from the VstsInfoscreen. The value is formatted in milliseconds. The following is the default value:
+
 >10000
 
 ### CompactMode
