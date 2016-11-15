@@ -21,7 +21,9 @@
         /// <returns>The path of the image.</returns>
         public static string GetProfilePath(this IdentityRef user)
         {
-            var serverPath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), $"{user.Id}.png");
+            var imgDir = HttpContext.Current.Server.MapPath("~/Images");
+            var serverPath = Path.Combine(imgDir, $"{user.Id}.png");
+            Directory.CreateDirectory(imgDir);
             if (File.Exists(serverPath) && new FileInfo(serverPath).LastWriteTime > DateTime.Now - new TimeSpan(24, 0, 0))
             {
                 return $"/Images/{user.Id}.png";
