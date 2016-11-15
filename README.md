@@ -1,6 +1,7 @@
 # VstsInfoscreen
 A website to show information for Visual Studio Team Services.
 
+![alt tag](https://raw.githubusercontent.com/ThomasGassmann/VstsInfoscreen/master/example.png)
 
 ## Configuration
 The configuration of the VstsInfoscreen is made in the Web.config file. The following options can / should be adjusted before using it:
