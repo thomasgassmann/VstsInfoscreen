@@ -113,4 +113,5 @@ https://www.visualstudio.com/en-us/docs/setup-admin/team-services/use-personal-a
 - Contains all Work Item Queries that should be queried. Contains a list of separated paths to the Work Item Queries. The separator is the ';' character. Example:
 
 >Shared Queries/Backlog Grooming/New Items;Shared Queries/Current Sprint/Current Sprint Backlog
+
 - In this example two queries with the paths 'Shared Queries/Backlog Grooming/New Items' and 'Shared Queries/Current Sprint/Current Sprint Backlog' will be queried and the amount of items in the queries will be displayed on the VstsInfoscreen.
