@@ -22,10 +22,7 @@
             {
                 var node = nodes.Pop();
                 yield return node;
-                foreach (var subNode in childrenSelector(node) ?? new List<T>())
-                {
-                    nodes.Push(subNode);
-                }
+                (childrenSelector(node).ToList() ?? new List<T>()).ForEach(nodes.Push);
             }
         }
     }
